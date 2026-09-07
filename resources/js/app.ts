@@ -6,10 +6,9 @@ import SettingsLayout from '@/layouts/settings/Layout.svelte';
 import { initializeFlashToast } from '@/lib/flash-toast';
 import { initializeTheme } from '@/lib/theme.svelte';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
-
 void createInertiaApp({
-    title: (title) => (title ? `${title} - ${appName}` : appName),
+    // AppHead sets the real title from the school name in Pengaturan.
+    title: (title) => title,
     layout: (name) => {
         switch (true) {
             case name === 'Welcome':

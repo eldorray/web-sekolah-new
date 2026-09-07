@@ -1,1 +1,0 @@
-import{i as e,r as t}from"./client-Hw39-pDY.js";import{k as n}from"./app-CrjdPaWT.js";var r=new Set([`$$slots`,`$$events`,`$$legacy`]);function i(i,a){let o=t(a,r),s=[[`path`,{d:`m15 18-6-6 6-6`}]];n(i,e({name:`chevron-left`},()=>o,{get iconNode(){return s}}))}export{i as t};

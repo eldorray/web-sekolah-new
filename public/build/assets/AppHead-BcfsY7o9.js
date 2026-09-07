@@ -1,1 +1,0 @@
-import{B as e,Ft as t,It as n,P as r,Q as i,St as a,V as o,Wt as s,ft as c,lt as l,n as u,nt as d,x as f}from"./client-Hw39-pDY.js";function p(p,m){n(m,!0);let h=u(m,`title`,3,``),g=`Laravel`,_=a(()=>h()?`${h()} - ${g}`:g);f(`6lre40`,t=>{var n=o(),a=c(n);r(a,()=>m.children??s),d(()=>{l.title=i(_)??``}),e(t,n)}),t()}export{p as t};

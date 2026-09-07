@@ -29,7 +29,7 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.ts'])
         <x-inertia::head>
-            <title>{{ config('app.name', 'Laravel') }}</title>
+            <title>{{ $schoolName }}</title>
         </x-inertia::head>
     </head>
     <body class="font-sans antialiased">

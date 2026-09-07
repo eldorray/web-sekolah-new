@@ -1,0 +1,1 @@
+import{l as e,u as t}from"./dist-BPl87uph.js";import{t as n}from"./Icon-cbqvYHZZ.js";var r=new Set([`$$slots`,`$$events`,`$$legacy`]);function i(i,a){let o=e(a,r),s=[[`rect`,{width:`14`,height:`14`,x:`8`,y:`8`,rx:`2`,ry:`2`}],[`path`,{d:`M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2`}]];n(i,t({name:`copy`},()=>o,{get iconNode(){return s}}))}export{i as t};

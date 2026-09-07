@@ -12,6 +12,7 @@ use App\Models\GalleryAlbum;
 use App\Models\News;
 use App\Models\PpdbRegistration;
 use App\Models\Program;
+use App\Models\Setting;
 use App\Models\User;
 use App\Models\VisitSchedule;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -216,6 +217,17 @@ class PublicPagesTest extends TestCase
         $response->assertOk();
         $this->assertStringContainsString('application/xml', (string) $response->headers->get('content-type'));
         $response->assertSee(route('news.show', $news->slug), false);
+    }
+
+    public function test_page_title_uses_the_school_name(): void
+    {
+        Setting::set('school_name', 'SMP Contoh Judul');
+
+        $response = $this->get('/');
+
+        $response->assertSee('<title>SMP Contoh Judul</title>', false);
+        $response->assertDontSee('- Laravel', false);
+        $response->assertDontSee('<title>Laravel</title>', false);
     }
 
     public function test_robots_blocks_the_panels(): void
