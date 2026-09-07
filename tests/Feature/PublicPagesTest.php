@@ -236,6 +236,15 @@ class PublicPagesTest extends TestCase
         }
     }
 
+    public function test_auth_pages_use_the_uploaded_logo(): void
+    {
+        Setting::set('logo', 'branding/logo.png');
+
+        $this->get('/login')
+            ->assertOk()
+            ->assertInertia(fn ($page) => $page->where('branding.logo', '/uploads/branding/logo.png'));
+    }
+
     public function test_robots_blocks_the_panels(): void
     {
         $this->get('/robots.txt')

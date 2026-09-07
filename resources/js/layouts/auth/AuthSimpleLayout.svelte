@@ -25,11 +25,9 @@
                     href={home()}
                     class="flex flex-col items-center gap-2 font-medium"
                 >
-                    <div
-                        class="mb-1 flex h-9 w-9 items-center justify-center rounded-md"
-                    >
+                    <div class="mb-1 flex items-center justify-center">
                         <AppLogoIcon
-                            class="size-9 fill-current text-(--foreground) dark:text-white"
+                            class="h-12 w-auto max-w-40 fill-current text-(--foreground) dark:text-white"
                         />
                     </div>
                     <span class="sr-only">{title}</span>

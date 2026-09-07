@@ -14,7 +14,11 @@
         children?: Snippet;
     } = $props();
 
-    const name = $derived(page.props.name);
+    const name = $derived(
+        (page.props.school?.school_name as string | undefined) ??
+            (page.props.name as string | undefined) ??
+            'Sekolah',
+    );
 </script>
 
 <div

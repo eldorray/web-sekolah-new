@@ -87,6 +87,21 @@ class AdminPagesTest extends TestCase
         $this->actingAs($this->guru())->get($path)->assertForbidden();
     }
 
+    public function test_self_registration_is_closed(): void
+    {
+        // Accounts are created by an admin: a self-registered user would land
+        // on role "guru" and reach the teacher panel.
+        $this->get('/register')->assertNotFound();
+        $this->post('/register', [
+            'name' => 'Orang Asing',
+            'email' => 'asing@contoh.test',
+            'password' => 'rahasia-panjang',
+            'password_confirmation' => 'rahasia-panjang',
+        ])->assertNotFound();
+
+        $this->assertDatabaseMissing('users', ['email' => 'asing@contoh.test']);
+    }
+
     public function test_detail_pages_render_for_real_records(): void
     {
         $admin = $this->admin();
