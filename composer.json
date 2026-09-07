@@ -77,8 +77,7 @@
             "@php artisan test"
         ],
         "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
@@ -117,5 +116,8 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "scripts-descriptions": {
+        "post-autoload-dump": "Tanpa artisan package:discover: Composer menjalankan script lewat proc_open yang dimatikan di shared hosting. Laravel membangun manifest saat request pertama."
+    }
 }

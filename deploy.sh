@@ -23,6 +23,11 @@ $COMPOSER install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 echo "==> Migrasi database"
 $PHP artisan migrate --force
 
+echo "==> Manifest paket"
+# Composer tidak lagi memanggil ini sendiri (butuh proc_open yang dimatikan
+# di shared hosting), jadi dihangatkan di sini.
+$PHP artisan package:discover --ansi
+
 echo "==> Folder unggahan"
 # Tidak memakai `storage:link`: PHP di shared hosting sering mematikan symlink().
 mkdir -p public/uploads
