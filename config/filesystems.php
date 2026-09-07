@@ -40,10 +40,12 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            // Uploads live under public/ instead of storage/, because
+            // Hostinger disables PHP's symlink() so `storage:link` cannot run.
+            'root' => public_path('uploads'),
             // Relative on purpose: uploads then resolve on whatever host and
             // port the app is served from, without APP_URL having to match.
-            'url' => '/storage',
+            'url' => '/uploads',
             'visibility' => 'public',
             'throw' => false,
             'report' => false,

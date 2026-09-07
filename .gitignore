@@ -17,6 +17,8 @@
 /bootstrap/ssr
 /public/hot
 /public/storage
+/public/uploads/*
+!/public/uploads/.gitkeep
 /public/fonts-manifest.dev.json
 /storage/pail
 

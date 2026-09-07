@@ -162,6 +162,20 @@ class AdminWritesTest extends TestCase
         Storage::disk('public')->assertExists((string) $brochure->file);
     }
 
+    /**
+     * Shared hosting disables PHP symlink(), so `storage:link` cannot run:
+     * uploads must live under public/ and be served by a relative URL.
+     */
+    public function test_public_disk_is_served_from_public_uploads(): void
+    {
+        $this->assertSame(public_path('uploads'), config('filesystems.disks.public.root'));
+        $this->assertSame('/uploads', config('filesystems.disks.public.url'));
+        $this->assertSame(
+            '/uploads/teachers/foto.jpg',
+            Storage::disk('public')->url('teachers/foto.jpg'),
+        );
+    }
+
     public function test_uploaded_images_get_a_host_independent_url(): void
     {
         Storage::fake('public');
@@ -178,8 +192,7 @@ class AdminWritesTest extends TestCase
 
         $teacher = User::query()->where('email', 'guru.foto@sekolah.test')->firstOrFail();
 
-        // Relative, so the image resolves on whatever host serves the app.
-        $this->assertStringStartsWith('/storage/teachers/', $teacher->photoUrl());
+        $this->assertStringStartsWith('teachers/', (string) $teacher->photo);
         Storage::disk('public')->assertExists((string) $teacher->photo);
 
         $this->get('/tim-guru')->assertInertia(fn ($page) => $page->where(
@@ -202,10 +215,10 @@ class AdminWritesTest extends TestCase
         $response = $this->get('/');
 
         $response->assertInertia(fn ($page) => $page
-            ->where('branding.logo', fn (?string $url) => str_starts_with((string) $url, '/storage/branding/')));
+            ->where('branding.logo', fn (?string $url) => str_contains((string) $url, 'branding/')));
 
         // The favicon is rendered server-side in the root template.
-        $response->assertSee('/storage/branding/', false);
+        $response->assertSee('branding/', false);
     }
 
     public function test_settings_identity_is_saved_and_shared(): void
@@ -413,8 +426,8 @@ class AdminWritesTest extends TestCase
             ->where('profile.about_heading', 'Berdiri 1998, tumbuh bersama')
             ->where('profile.about_heading_accent', 'warga kampung')
             ->where('profile.vision_note', 'Catatan di bawah visi.')
-            ->where('images.hero', fn (?string $url) => str_starts_with((string) $url, '/storage/branding/'))
-            ->where('images.photo', fn (?string $url) => str_starts_with((string) $url, '/storage/branding/')));
+            ->where('images.hero', fn (?string $url) => str_contains((string) $url, 'branding/'))
+            ->where('images.photo', fn (?string $url) => str_contains((string) $url, 'branding/')));
     }
 
     public function test_admin_can_mark_a_message_read_and_delete_it(): void

@@ -23,8 +23,10 @@ $COMPOSER install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 echo "==> Migrasi database"
 $PHP artisan migrate --force
 
-echo "==> Tautan storage"
-[ -L public/storage ] || $PHP artisan storage:link
+echo "==> Folder unggahan"
+# Tidak memakai `storage:link`: PHP di shared hosting sering mematikan symlink().
+mkdir -p public/uploads
+chmod -R 775 public/uploads storage bootstrap/cache
 
 echo "==> Segarkan cache"
 $PHP artisan optimize:clear
