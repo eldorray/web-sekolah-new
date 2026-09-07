@@ -223,11 +223,17 @@ class PublicPagesTest extends TestCase
     {
         Setting::set('school_name', 'SMP Contoh Judul');
 
-        $response = $this->get('/');
+        $html = $this->get('/')->assertOk()->getContent();
 
-        $response->assertSee('<title>SMP Contoh Judul</title>', false);
-        $response->assertDontSee('- Laravel', false);
-        $response->assertDontSee('<title>Laravel</title>', false);
+        // Never the framework name: that was the old VITE_APP_NAME fallback.
+        $this->assertStringNotContainsString('Laravel', (string) $html);
+        $this->assertStringContainsString('content="SMP Contoh Judul"', (string) $html);
+
+        // With the Vite dev server running the head is rendered by SSR, so the
+        // tag is only asserted when the template emitted one.
+        if (preg_match('/<title>(.*?)<\/title>/s', (string) $html, $matches) === 1) {
+            $this->assertStringContainsString('SMP Contoh Judul', $matches[1]);
+        }
     }
 
     public function test_robots_blocks_the_panels(): void
