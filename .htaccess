@@ -1,0 +1,29 @@
+# Root .htaccess untuk shared hosting (mis. Hostinger) ketika repo di-clone
+# langsung ke folder document root, misalnya public_html.
+#
+# Tugasnya dua: menutup berkas aplikasi yang tidak boleh diakses publik,
+# lalu meneruskan seluruh permintaan ke folder public/ milik Laravel.
+#
+# Kalau kamu bisa mengubah document root domain ke <repo>/public lewat hPanel,
+# cara itu lebih aman dan berkas ini tidak diperlukan.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Tolak akses ke berkas titik (.env, .git, .htpasswd, ...)
+    RewriteRule (^|/)\. - [F]
+
+    # Tolak akses langsung ke direktori aplikasi
+    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor|node_modules)(/|$) - [F]
+
+    # Teruskan sisanya ke public/
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Lapis kedua: sembunyikan berkas sensitif walau mod_rewrite mati
+<FilesMatch "^\.env|^\.env\..*|composer\.(json|lock)$|package(-lock)?\.json$|artisan$|\.sqlite$|\.md$|\.sh$">
+    Require all denied
+</FilesMatch>
+
+Options -Indexes

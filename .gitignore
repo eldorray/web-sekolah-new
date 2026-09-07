@@ -1,29 +1,58 @@
-/.phpunit.cache
-/bootstrap/ssr
+# Dependensi
 /node_modules
-/public/build
-/public/fonts-manifest.dev.json
-/public/hot
-/public/storage
-/storage/*.key
-/storage/pail
-/resources/js/actions
-/resources/js/routes
-/resources/js/wayfinder
 /vendor
-.DS_Store
+/auth.json
+
+# Rahasia & basis data lokal
 .env
 .env.backup
 .env.production
+/storage/*.key
+/database/*.sqlite
+/database/*.sqlite-journal
+
+# Berkas sementara framework
+/.phpunit.cache
+/.phpunit.result.cache
+/bootstrap/ssr
+/public/hot
+/public/storage
+/public/fonts-manifest.dev.json
+/storage/pail
+
+# Hasil generate Wayfinder (dibuat ulang oleh `npm run build`)
+/resources/js/actions
+/resources/js/routes
+/resources/js/wayfinder
+
+# Alat bantu AI / editor — sengaja tidak diunggah ke GitHub
+/.agents
+/.ai
+/.claude
+/.codex
+/.cursor
+/.junie
+/.serena
+/.windsurf
+/AGENTS.md
+/CLAUDE.md
+/.mcp.json
+/boost.json
+/opencode.json
+
+# Editor & OS
+.DS_Store
 .phpactor.json
-.phpunit.result.cache
-Homestead.json
-Homestead.yaml
-npm-debug.log
-yarn-error.log
-/auth.json
 /.fleet
 /.idea
 /.nova
 /.vscode
 /.zed
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+
+# CATATAN: /public/build SENGAJA tidak diabaikan.
+# Aset hasil build ikut di-commit supaya server hanya perlu `git pull`
+# tanpa memasang Node/npm.

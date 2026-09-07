@@ -170,3 +170,136 @@
         @apply bg-background text-foreground;
     }
 }
+
+/* ── Public site theme (ref: websekolah.jpg — teal + orange) ─────────── */
+@theme inline {
+    --font-display:
+        'Plus Jakarta Sans', 'Instrument Sans', ui-sans-serif, system-ui,
+        sans-serif;
+
+    --color-brand: #0f7b6c;
+    --color-brand-dark: #0a5d52;
+    --color-brand-deep: #063a33;
+    --color-brand-soft: #d9ebe8;
+    --color-sun: #f5a128;
+    --color-sun-dark: #dd8a12;
+    --color-sun-soft: #fdf0da;
+    --color-ink: #123338;
+    --color-ink-soft: #5e7a80;
+    --color-mist: #eef6f5;
+
+    /* Chart mark: brand teal nudged up in chroma so it does not read gray.
+       Validated against both the light and dark chart surface. */
+    --color-brand-mark: #0f8f7c;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+@layer components {
+    /* Set by the `reveal` action; absent markup stays visible without JS. */
+    [data-reveal] {
+        transition:
+            opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+            transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        transition-delay: var(--reveal-delay, 0ms);
+        will-change: opacity, transform;
+    }
+
+    [data-reveal='hidden'] {
+        opacity: 0;
+        transform: translate3d(0, var(--reveal-y, 16px), 0);
+    }
+
+    [data-reveal='shown'] {
+        opacity: 1;
+        transform: none;
+    }
+
+    .shell {
+        @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+    }
+
+    /* Small uppercase label above a section heading. */
+    .eyebrow {
+        @apply font-display text-sun inline-flex items-center gap-2 text-xs font-bold tracking-[0.18em] uppercase;
+    }
+
+    .section-title {
+        @apply font-display text-ink text-3xl leading-tight font-extrabold sm:text-4xl;
+    }
+
+    .btn-sun {
+        @apply bg-sun font-display shadow-sun/30 hover:bg-sun-dark focus-visible:ring-sun inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white shadow-lg transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none;
+    }
+
+    .btn-outline-light {
+        @apply font-display hover:text-brand inline-flex items-center gap-2 rounded-full border-2 border-white/70 px-6 py-3 text-sm font-bold text-white transition hover:bg-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:outline-none;
+    }
+
+    .btn-brand {
+        @apply bg-brand font-display hover:bg-brand-dark focus-visible:ring-brand inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none;
+    }
+
+    .field {
+        @apply border-brand-soft text-ink placeholder:text-ink-soft/70 focus:border-brand focus:ring-brand/20 w-full rounded-xl border bg-white px-4 py-3 text-sm transition focus:ring-2 focus:outline-none;
+    }
+
+    /* Sanitized rich text coming from the CMS. */
+    .prose-content :is(h2, h3) {
+        @apply mt-6 mb-2 font-display font-bold text-ink;
+    }
+
+    .prose-content h2 {
+        @apply text-xl;
+    }
+
+    .prose-content h3 {
+        @apply text-lg;
+    }
+
+    .prose-content p {
+        @apply my-3;
+    }
+
+    .prose-content :is(ul, ol) {
+        @apply my-3 ml-5 list-outside;
+    }
+
+    .prose-content ul {
+        @apply list-disc;
+    }
+
+    .prose-content ol {
+        @apply list-decimal;
+    }
+
+    .prose-content blockquote {
+        @apply my-4 rounded-2xl border-l-4 border-sun bg-mist p-5 text-ink;
+    }
+
+    .prose-content a {
+        @apply text-brand underline;
+    }
+
+    .field-label {
+        @apply font-display text-ink mb-1.5 block text-xs font-bold tracking-wide uppercase;
+    }
+}

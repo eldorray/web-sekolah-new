@@ -4,9 +4,26 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        @php
+            $favicon = \App\Models\Setting::imageUrl('favicon');
+            $ogImage = \App\Models\Setting::imageUrl('og_image');
+            $schoolName = \App\Models\Setting::get('school_name', config('app.name'));
+        @endphp
+
+        @if ($favicon)
+            <link rel="icon" href="{{ $favicon }}">
+            <link rel="apple-touch-icon" href="{{ $favicon }}">
+        @else
+            <link rel="icon" href="/favicon.ico" sizes="any">
+            <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+            <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        @endif
+
+        <meta property="og:site_name" content="{{ $schoolName }}">
+        @if ($ogImage)
+            <meta property="og:image" content="{{ url($ogImage) }}">
+            <meta name="twitter:card" content="summary_large_image">
+        @endif
 
         @fonts
 

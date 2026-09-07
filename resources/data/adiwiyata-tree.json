@@ -1,0 +1,30 @@
+[
+    {
+        "key": "IKPA",
+        "title": "IKPA — Perencanaan & Kebijakan",
+        "children": [
+            { "key": "IKPA/1", "title": "SK Tim Adiwiyata" },
+            { "key": "IKPA/2", "title": "Dokumen KTSP bermuatan PRLH" },
+            { "key": "IKPA/3", "title": "RKAS bermuatan PRLH" }
+        ]
+    },
+    {
+        "key": "IKPB",
+        "title": "IKPB — Pelaksanaan Gerakan PBLHS",
+        "children": [
+            { "key": "IKPB/1", "title": "Kebersihan & sanitasi" },
+            { "key": "IKPB/2", "title": "Pengelolaan sampah" },
+            { "key": "IKPB/3", "title": "Penanaman & pemeliharaan pohon" },
+            { "key": "IKPB/4", "title": "Konservasi air" },
+            { "key": "IKPB/5", "title": "Konservasi energi" }
+        ]
+    },
+    {
+        "key": "IKPC",
+        "title": "IKPC — Pemantauan & Evaluasi",
+        "children": [
+            { "key": "IKPC/1", "title": "Laporan berkala tim" },
+            { "key": "IKPC/2", "title": "Umpan balik warga sekolah" }
+        ]
+    }
+]

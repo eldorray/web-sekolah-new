@@ -1,0 +1,1 @@
+import{i as e,r as t}from"./client-Hw39-pDY.js";import{k as n}from"./app-CrjdPaWT.js";var r=new Set([`$$slots`,`$$events`,`$$legacy`]);function i(i,a){let o=t(a,r),s=[[`path`,{d:`M21.801 10A10 10 0 1 1 17 3.335`}],[`path`,{d:`m9 11 3 3L22 4`}]];n(i,e({name:`circle-check-big`},()=>o,{get iconNode(){return s}}))}export{i as t};
