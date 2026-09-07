@@ -9,9 +9,8 @@
 
 @theme inline {
     --font-sans:
-        Instrument Sans, ui-sans-serif, system-ui, sans-serif,
-        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-        'Noto Color Emoji';
+        Inter, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
@@ -83,9 +82,8 @@
     body,
     html {
         --font-sans:
-            'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
-            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-            'Noto Color Emoji';
+            Inter, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+            'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     }
 }
 
@@ -173,9 +171,9 @@
 
 /* ── Public site theme (ref: websekolah.jpg — teal + orange) ─────────── */
 @theme inline {
-    --font-display:
-        'Plus Jakarta Sans', 'Instrument Sans', ui-sans-serif, system-ui,
-        sans-serif;
+    /* One family for the whole app; the display token stays so the existing
+       font-display utilities keep working. */
+    --font-display: Inter, ui-sans-serif, system-ui, sans-serif;
 
     --color-brand: #0f7b6c;
     --color-brand-dark: #0a5d52;
@@ -264,7 +262,7 @@
 
     /* Sanitized rich text coming from the CMS. */
     .prose-content :is(h2, h3) {
-        @apply mt-6 mb-2 font-display font-bold text-ink;
+        @apply font-display text-ink mt-6 mb-2 font-bold;
     }
 
     .prose-content h2 {
@@ -292,7 +290,7 @@
     }
 
     .prose-content blockquote {
-        @apply my-4 rounded-2xl border-l-4 border-sun bg-mist p-5 text-ink;
+        @apply border-sun bg-mist text-ink my-4 rounded-2xl border-l-4 p-5;
     }
 
     .prose-content a {
