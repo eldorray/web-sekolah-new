@@ -3,6 +3,7 @@
     import ChevronRight from '@lucide/svelte/icons/chevron-right';
     import Play from '@lucide/svelte/icons/play';
     import X from '@lucide/svelte/icons/x';
+    import SectionHead from '@/components/public/SectionHead.svelte';
     import { reveal } from '@/lib/reveal';
 
     export type Video = {
@@ -80,41 +81,12 @@
 {#if videos.length > 0}
     <section class="bg-white py-20">
         <div class="shell">
-            <div class="flex flex-wrap items-end justify-between gap-4">
-                <div use:reveal class="max-w-2xl">
-                    <p class="eyebrow">
-                        <span class="h-px w-6 bg-sun"></span>Galeri video
-                    </p>
-                    <h2 class="section-title mt-3">
-                        Lihat kegiatan kami <span class="text-sun">dalam video</span>
-                    </h2>
-                    <p class="mt-4 text-sm leading-relaxed text-ink-soft">
-                        Rekaman kegiatan, prestasi, dan projek siswa. Geser ke
-                        samping untuk melihat lebih banyak.
-                    </p>
-                </div>
-
-                {#if videos.length > 1}
-                    <div use:reveal={{ delay: 120 }} class="flex gap-2">
-                        <button
-                            type="button"
-                            onclick={() => slide(-1)}
-                            class="grid size-11 place-items-center rounded-full border border-brand-soft text-brand transition hover:bg-brand hover:text-white focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:outline-none"
-                        >
-                            <span class="sr-only">Video sebelumnya</span>
-                            <ChevronLeft class="size-5" />
-                        </button>
-                        <button
-                            type="button"
-                            onclick={() => slide(1)}
-                            class="grid size-11 place-items-center rounded-full border border-brand-soft text-brand transition hover:bg-brand hover:text-white focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:outline-none"
-                        >
-                            <span class="sr-only">Video berikutnya</span>
-                            <ChevronRight class="size-5" />
-                        </button>
-                    </div>
-                {/if}
-            </div>
+            <SectionHead
+                eyebrow="Galeri video"
+                title="Lihat kegiatan kami"
+                accent="dalam video"
+                text="Rekaman kegiatan, prestasi, dan projek siswa. Geser ke samping untuk melihat lebih banyak."
+            />
 
             <div
                 bind:this={track}
@@ -168,6 +140,27 @@
                     </div>
                 {/each}
             </div>
+
+            {#if videos.length > 1}
+                <div use:reveal class="mt-6 flex justify-center gap-2">
+                    <button
+                        type="button"
+                        onclick={() => slide(-1)}
+                        class="grid size-11 place-items-center rounded-full border border-brand-soft text-brand transition hover:bg-brand hover:text-white focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:outline-none"
+                    >
+                        <span class="sr-only">Video sebelumnya</span>
+                        <ChevronLeft class="size-5" />
+                    </button>
+                    <button
+                        type="button"
+                        onclick={() => slide(1)}
+                        class="grid size-11 place-items-center rounded-full border border-brand-soft text-brand transition hover:bg-brand hover:text-white focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:outline-none"
+                    >
+                        <span class="sr-only">Video berikutnya</span>
+                        <ChevronRight class="size-5" />
+                    </button>
+                </div>
+            {/if}
         </div>
     </section>
 {/if}
