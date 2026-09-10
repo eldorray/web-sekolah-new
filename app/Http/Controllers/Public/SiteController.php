@@ -11,6 +11,7 @@ use App\Models\News;
 use App\Models\Program;
 use App\Models\Setting;
 use App\Models\User;
+use App\Models\Video;
 use Inertia\Response;
 
 class SiteController extends Controller
@@ -31,6 +32,15 @@ class SiteController extends Controller
                 AdminSettingController::list('home_slides'),
             ),
             'aboutPoints' => AdminSettingController::list('home_about_points'),
+            'videos' => Video::query()->active()->take(12)->get()
+                ->map(fn (Video $video): array => [
+                    'id' => $video->id,
+                    'title' => $video->title,
+                    'description' => $video->description,
+                    'thumbnail' => $video->thumbnailUrl(),
+                    'embed_url' => $video->embedUrl(),
+                ])
+                ->all(),
             'quote' => Setting::many(['home_quote', 'home_quote_by']),
             'cta' => Setting::many(['ppdb_cta_eyebrow', 'ppdb_cta_title', 'ppdb_cta_text']),
             'programs' => Program::query()->active()->take(3)->get()

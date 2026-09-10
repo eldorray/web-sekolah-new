@@ -10,6 +10,9 @@
     import NewsCard from '@/components/public/NewsCard.svelte';
     import ProgramCard from '@/components/public/ProgramCard.svelte';
     import SectionHead from '@/components/public/SectionHead.svelte';
+    import VideoCarousel, {
+        type Video,
+    } from '@/components/public/VideoCarousel.svelte';
     import { reveal } from '@/lib/reveal';
     import { schoolState } from '@/lib/school.svelte';
     import { facilities, slides } from '@/lib/site';
@@ -32,6 +35,7 @@
         aboutPoints = [],
         quote = {},
         cta = {},
+        videos = [],
     }: {
         programs?: ProgramCardData[];
         news?: NewsItem[];
@@ -51,6 +55,7 @@
         aboutPoints?: Array<{ icon: string; title: string; text: string }>;
         quote?: Record<string, string | null>;
         cta?: Record<string, string | null>;
+        videos?: Video[];
     } = $props();
 
     const school = $derived(page.props.school ?? {});
@@ -325,6 +330,9 @@
         </div>
     </div>
 </section>
+
+<!-- Video gallery, above the news section -->
+<VideoCarousel {videos} />
 
 <!-- News -->
 <section class="bg-white py-20">

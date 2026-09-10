@@ -14,6 +14,7 @@
     import Sparkles from '@lucide/svelte/icons/sparkles';
     import UserPlus from '@lucide/svelte/icons/user-plus';
     import UserRound from '@lucide/svelte/icons/user-round';
+    import MonitorPlay from '@lucide/svelte/icons/monitor-play';
     import Users from '@lucide/svelte/icons/users';
     import type { Snippet } from 'svelte';
     import AppLogo from '@/components/AppLogo.svelte';
@@ -52,6 +53,7 @@
         { title: 'Guru', href: '/admin/teachers', icon: Users },
         { title: 'Brosur', href: '/admin/brochures', icon: FileText },
         { title: 'Galeri', href: '/admin/gallery', icon: Images },
+        { title: 'Video', href: '/admin/videos', icon: MonitorPlay },
         { title: 'Pustaka Ikon', href: '/admin/icons', icon: Shapes },
     ];
 

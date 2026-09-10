@@ -12,6 +12,7 @@ use App\Models\PpdbRegistration;
 use App\Models\Program;
 use App\Models\Setting;
 use App\Models\User;
+use App\Models\Video;
 use App\Models\VisitorLog;
 use App\Models\VisitSchedule;
 use Illuminate\Database\Seeder;
@@ -45,6 +46,7 @@ class DatabaseSeeder extends Seeder
         $this->seedNews($admin);
         $this->seedGallery();
         $this->seedBrochures();
+        $this->seedVideos();
         $this->seedInbox();
         $this->seedRegistrations();
         $this->seedVisitorLogs();
@@ -326,6 +328,32 @@ class DatabaseSeeder extends Seeder
                     'preview_image' => 'https://picsum.photos/seed/syy-brochure-'.$order.'/800/1130',
                     'order' => $order,
                     'is_active' => $active,
+                ],
+            );
+        }
+    }
+
+    /**
+     * Contoh video. ID-nya nyata supaya thumbnail YouTube tampil; ganti dengan
+     * video sekolah sendiri lewat panel.
+     */
+    private function seedVideos(): void
+    {
+        $videos = [
+            ['Profil Sekolah', 'Cuplikan kegiatan belajar dan fasilitas.', 'jNQXAC9IVRw', 1],
+            ['Wisuda Tahfizh', 'Prosesi wisuda angkatan terakhir.', 'aqz-KE-bpKQ', 2],
+            ['Projek P5 Kelas VII', 'Pengolahan sampah menjadi paving block.', 'ScMzIvxBSi4', 3],
+            ['Pentas Seni', 'Penampilan angklung dan hadroh siswa.', 'YE7VzlLtp-4', 4],
+        ];
+
+        foreach ($videos as [$title, $description, $youtubeId, $order]) {
+            Video::query()->updateOrCreate(
+                ['youtube_id' => $youtubeId],
+                [
+                    'title' => $title,
+                    'description' => $description,
+                    'order' => $order,
+                    'is_active' => true,
                 ],
             );
         }

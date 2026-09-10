@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ProgramController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\VisitController;
 use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
 use App\Http\Controllers\Guru\NewsController as GuruNewsController;
@@ -115,6 +116,13 @@ Route::middleware(['auth', 'verified', 'role:admin'])
         Route::post('gallery/{album:slug}/photos', [GalleryController::class, 'storePhotos'])->name('gallery.photos.store');
         Route::put('gallery-photos/{photo}', [GalleryController::class, 'updatePhoto'])->name('gallery.photos.update');
         Route::delete('gallery-photos/{photo}', [GalleryController::class, 'destroyPhoto'])->name('gallery.photos.destroy');
+
+        Route::get('videos', [VideoController::class, 'index'])->name('videos.index');
+        Route::get('videos/create', [VideoController::class, 'create'])->name('videos.create');
+        Route::post('videos', [VideoController::class, 'store'])->name('videos.store');
+        Route::get('videos/{video}/edit', [VideoController::class, 'edit'])->name('videos.edit');
+        Route::put('videos/{video}', [VideoController::class, 'update'])->name('videos.update');
+        Route::delete('videos/{video}', [VideoController::class, 'destroy'])->name('videos.destroy');
 
         Route::get('icons', IconController::class)->name('icons');
 
